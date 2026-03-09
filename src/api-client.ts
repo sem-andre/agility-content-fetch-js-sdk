@@ -238,7 +238,21 @@ class ApiClient {
 			return data
 
 		} catch (error) {
-			logError({ config: this.config, message: `AgilityCMS Fetch API ERROR: Request failed for ${reqConfig.baseURL}${reqConfig.url} ... ${error}` })
+			logError({ config: this.config, message: `AgilityCMS Fetch API ERROR: Request failed for ${reqConfig.baseURL}${reqConfig.url} ... ${error}` });
+
+			const errorInfo = {
+				name: error ?. name,
+				message: error ?. message,
+				stack: error ?. stack,
+				cause: {
+					name: error ?. cause ?. name,
+					message: error ?. cause ?. message,
+					code: error ?. cause ?. code,
+
+				}
+			}
+
+			console.error('AgilityCMS Fetch API ERROR: Additional info', errorInfo);
 		}
 	}
 }
