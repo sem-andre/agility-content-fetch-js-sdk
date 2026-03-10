@@ -308,22 +308,23 @@ class ApiClient {
 		} catch (error) {
 			const duration = Date.now() - startTime;
 
-			const errorInfo = {
-				name: error ?. name,
-				message: error ?. message,
-				stack: error ?. stack,
-				duration: duration,
-				cause: {
-					name: error ?. cause ?. name,
-					message: error ?. cause ?. message,
-					code: error ?. cause ?. code
-				}
-			}
-
-			console.error('AgilityCMS Fetch API ERROR: Additional info', errorInfo);
-
 			// Log detailed exception information if debug is enabled
 			if (this.config.debug) {
+
+				const errorInfo = {
+					name: error ?. name,
+					message: error ?. message,
+					stack: error ?. stack,
+					duration: duration,
+					cause: {
+						name: error ?. cause ?. name,
+						message: error ?. cause ?. message,
+						code: error ?. cause ?. code
+					}
+				}
+
+				console.error('AgilityCMS Fetch API ERROR: Additional info', errorInfo);
+
 				logDebugDetails({
 					config: this.config,
 					details: {
