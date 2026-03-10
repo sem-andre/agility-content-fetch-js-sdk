@@ -323,7 +323,9 @@ class ApiClient {
 					}
 				}
 
-				console.error('AgilityCMS Fetch API ERROR: Additional info', errorInfo);
+				console.log('\x1b[36m%s\x1b[0m', '=== AgilityCMS Fetch API ERROR: Additional info ===');
+				console.error(JSON.stringify(errorInfo, null, 2));
+				console.log('\x1b[36m%s\x1b[0m', '===================================');
 
 				logDebugDetails({
 					config: this.config,
